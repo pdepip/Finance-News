@@ -1,6 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import Twitter from 'twitter'
+import Twitter from 'ntwitter'
 import dataController from './controllers/dataController'
 import bodyParser from 'body-parser'
 
@@ -21,3 +21,14 @@ app.get('/api/*', dataController.handleGet)
 
 const port = 3000
 app.listen(port, () => console.log('Running on port ${port}'))
+
+const watchList = ['4922002810']
+twit.stream('statuses/filter', {follow: watchList}, function(stream) {
+	stream.on('data', function(data) {
+		console.log(data)
+	})
+	stream.on('error', function(error) {
+		console.log(error)
+	})
+
+})
