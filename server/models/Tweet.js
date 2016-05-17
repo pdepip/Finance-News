@@ -1,13 +1,17 @@
 import mongoose from 'mongoose'
 
-const Tweet = mongoose.Schema({
-	twid : String, 
-        author: String,
-        body: String,
-      	date: Date,
-        title: String,
-      	url: String
-})
-
+class Tweet extends mongoose.Schema {
+	constructor() {
+		super({
+			twid : String, 
+      			author: String,
+        		body: String,
+			pos: String,
+			taggedWords: Array,
+      			date: Date,
+			screenname: String
+		})
+	}
+}
 export default mongoose.model('Tweet', new Tweet());
 
